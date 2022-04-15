@@ -42,7 +42,13 @@ public class ElbonianArabicConverter {
      */
     public int toArabic() {
         // TODO Fill in the method's body
-        return 1;
+        int count = 0;
+        int n = number.length();
+        for (int i = 0; i < n; i++)
+        {
+            char c = number.charAt(i);
+        }
+        return count;
     }
 
     /**

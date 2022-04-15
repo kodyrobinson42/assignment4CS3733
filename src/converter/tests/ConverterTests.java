@@ -131,4 +131,28 @@ public class ConverterTests {
         assertEquals(converter.toElbonian(), "N");
     }
 
+    @Test
+    public void rule1Test1() throws MalformedNumberException, ValueOutOfBoundsException {
+        ElbonianArabicConverter converter = new ElbonianArabicConverter("CCCXII");
+        assertEquals(converter.toArabic(), 212);
+    }
+
+    @Test
+    public void rule1Test2() throws MalformedNumberException, ValueOutOfBoundsException {
+        ElbonianArabicConverter converter = new ElbonianArabicConverter("DXV");
+        assertEquals(converter.toArabic(), 313);
+    }
+
+
+    @Test
+    public void rule1Test3() throws MalformedNumberException, ValueOutOfBoundsException {
+        ElbonianArabicConverter converter = new ElbonianArabicConverter("2120");
+        assertEquals(converter.toElbonian(), 313);
+    }
+
+    @Test
+    public void rule1Test4() throws MalformedNumberException, ValueOutOfBoundsException {
+        ElbonianArabicConverter converter = new ElbonianArabicConverter("MMMCXXX");
+        assertEquals(converter, "MalformedNumberException");
+    }
 }
