@@ -3,6 +3,8 @@ package converter;
 import converter.exceptions.MalformedNumberException;
 import converter.exceptions.ValueOutOfBoundsException;
 
+import java.util.ArrayList;
+
 /**
  * This class implements a converter that takes a string that represents a number in either the
  * Elbonian or Arabic numeral form. This class has methods that will return a value in the chosen form.
@@ -12,7 +14,10 @@ import converter.exceptions.ValueOutOfBoundsException;
 public class ElbonianArabicConverter {
 
     // A string that holds the number (Elbonian or Arabic) you would like to convert
+
+
     private final String number;
+    ArrayList<Character> ElbonianChar = new ArrayList<Character>();
 
     /**
      * Constructor for the ElbonianArabic class that takes a string. The string should contain a valid
@@ -31,8 +36,63 @@ public class ElbonianArabicConverter {
     public ElbonianArabicConverter(String number) throws MalformedNumberException, ValueOutOfBoundsException {
 
         // TODO check to see if the number is valid, then set it equal to the string
+
+        ArrayList<Integer> ElbonianInts = new ArrayList<Integer>();
+        ElbonianInts.add(0);
+        ElbonianInts.add(1);
+        ElbonianInts.add(3);
+        ElbonianInts.add(10);
+        ElbonianInts.add(30);
+        ElbonianInts.add(100);
+        ElbonianInts.add(300);
+        ElbonianInts.add(1000);
+        ElbonianInts.add(3000);
+
+
+        //upper-case
+        ElbonianChar.add('Z');
+        ElbonianChar.add('I');
+        ElbonianChar.add('V');
+        ElbonianChar.add('X');
+        ElbonianChar.add('L');
+        ElbonianChar.add('C');
+        ElbonianChar.add('D');
+        ElbonianChar.add('M');
+        ElbonianChar.add('N');
+
+        //lower-case
+        ElbonianChar.add('z');
+        ElbonianChar.add('i');
+        ElbonianChar.add('v');
+        ElbonianChar.add('x');
+        ElbonianChar.add('l');
+        ElbonianChar.add('c');
+        ElbonianChar.add('d');
+        ElbonianChar.add('m');
+        ElbonianChar.add('n');
+
+
+
+
+
+
+
         this.number = number;
     }
+
+    //check if letters are even Elbonian
+    private boolean checkIfElbonian(String letter){
+        for (char elb: letter.toCharArray()){
+            if(!ElbonianChar.contains(elb)){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    //create individual methods to check each rule one by one
+
+
 
     /**
      * Converts the number to an Arabic numeral or returns the current value as an int if it is already
