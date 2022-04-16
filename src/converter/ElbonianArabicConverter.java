@@ -3,6 +3,8 @@ package converter;
 import converter.exceptions.MalformedNumberException;
 import converter.exceptions.ValueOutOfBoundsException;
 
+import java.util.HashMap;
+
 /**
  * This class implements a converter that takes a string that represents a number in either the
  * Elbonian or Arabic numeral form. This class has methods that will return a value in the chosen form.
@@ -13,7 +15,6 @@ public class ElbonianArabicConverter {
 
     // A string that holds the number (Elbonian or Arabic) you would like to convert
     private final String number;
-
     /**
      * Constructor for the ElbonianArabic class that takes a string. The string should contain a valid
      * Elbonian or Arabic numeral. The String can have leading or trailing spaces. But there should be no
@@ -42,12 +43,35 @@ public class ElbonianArabicConverter {
      */
     public int toArabic() {
         // TODO Fill in the method's body
+        HashMap<String, Integer> conversionTable = new HashMap<String, Integer>();
+
+        conversionTable.put("N", 3000);
+        conversionTable.put("M", 1000);
+        conversionTable.put("D", 300);
+        conversionTable.put("C", 100);
+        conversionTable.put("L", 30);
+        conversionTable.put("X", 10);
+        conversionTable.put("V", 3);
+        conversionTable.put("I", 1);
+        conversionTable.put("Z", 0);
+
+        String c2 = "-";
         int count = 0;
+        int sign = 1;
         int n = number.length();
         for (int i = 0; i < n; i++)
         {
-            char c = number.charAt(i);
+            String c = Character.toString(number.charAt(i));
+
+            if (c.equals("-"))
+            {
+                sign = -1;
+            }
+            else {
+                count += conversionTable.get(c);
+            }
         }
+        count = count*sign;
         return count;
     }
 
