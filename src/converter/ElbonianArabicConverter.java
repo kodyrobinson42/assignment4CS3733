@@ -1,5 +1,6 @@
 package converter;
 
+import com.sun.deploy.security.SelectableSecurityManager;
 import converter.exceptions.MalformedNumberException;
 import converter.exceptions.ValueOutOfBoundsException;
 
@@ -36,21 +37,17 @@ public class ElbonianArabicConverter {
 	 * Leading and trailing spaces should not throw an error.
      */
     public ElbonianArabicConverter(String number) throws MalformedNumberException, ValueOutOfBoundsException {
-
         // TODO check to see if the number is valid, then set it equal to the string
-
-        ArrayList<Integer> ElbonianInts = new ArrayList<Integer>();
-        ElbonianInts.add(0);
-        ElbonianInts.add(1);
-        ElbonianInts.add(3);
-        ElbonianInts.add(10);
-        ElbonianInts.add(30);
-        ElbonianInts.add(100);
-        ElbonianInts.add(300);
-        ElbonianInts.add(1000);
-        ElbonianInts.add(3000);
-
-
+        ArrayList<Integer> ArabicInts = new ArrayList<Integer>();
+        ArabicInts.add(0);
+        ArabicInts.add(1);
+        ArabicInts.add(3);
+        ArabicInts.add(10);
+        ArabicInts.add(30);
+        ArabicInts.add(100);
+        ArabicInts.add(300);
+        ArabicInts.add(1000);
+        ArabicInts.add(3000);
         //upper-case
         ElbonianChar.add('Z');
         ElbonianChar.add('I');
@@ -61,7 +58,6 @@ public class ElbonianArabicConverter {
         ElbonianChar.add('D');
         ElbonianChar.add('M');
         ElbonianChar.add('N');
-
         //lower-case
         ElbonianChar.add('z');
         ElbonianChar.add('i');
@@ -73,6 +69,51 @@ public class ElbonianArabicConverter {
         ElbonianChar.add('m');
         ElbonianChar.add('n');
 
+        number = removeWhiteSpace(number);
+
+        boolean isInElbonianAlphabet = checkIfElbonian(number);
+        if(!isInElbonianAlphabet){
+            throw new MalformedNumberException("The string contains letters not in the Elbonian Alphabet!");
+
+        }
+
+        boolean resultofTestOne = ruleOneTest(number);
+        if(!resultofTestOne){
+            throw new MalformedNumberException("Failed Elbonian Numeral Rule 1!");
+        }
+/*
+        boolean resultofTestTwo = ruleTwoTest(number);
+        if(!resultofTestTwo){
+            throw new MalformedNumberException("Failed Elbonian Numeral Rule 2!")
+        }
+
+        boolean resultofTestThree = ruleThreeTest(number);
+        if(!resultofTestThree){
+            throw new MalformedNumberException("Failed Elbonian Numeral Rule 3!")
+        }
+
+        boolean resultofTestFour = ruleFourTest(number);
+        if(!resultofTestFour){
+            throw new MalformedNumberException("Failed Elbonian Numeral Rule 4!")
+        }
+
+        boolean resultofTestFive = ruleFiveTest(number);
+        if(!resultofTestFive){
+            throw new MalformedNumberException("Failed Elbonian Numeral Rule 5!")
+        }
+
+        boolean resultofTestSix = ruleOneTest(number);
+        if(!resultofTestSix){
+            throw new MalformedNumberException("Failed Elbonian Numeral Rule 6!")
+        }
+
+        boolean resultofTestSeven = ruleOneTest(number);
+        if(!resultofTestSeven){
+            throw new MalformedNumberException("Failed Elbonian Numeral Rule 7!")
+        }
+
+ */
+
 
 
 
@@ -82,9 +123,15 @@ public class ElbonianArabicConverter {
         this.number = number;
     }
 
-    //check if letters are even Elbonian
-    private boolean checkIfElbonian(String letter){
-        for (char elb: letter.toCharArray()){
+    //remove whitespace
+    public String removeWhiteSpace(String num){
+        num = num.replaceAll("\\s", "");
+        return num;
+    }
+
+    //check if letters are even in Elbonian alphabet
+    private boolean checkIfElbonian(String num){
+        for (char elb: num.toCharArray()){
             if(!ElbonianChar.contains(elb)){
                 return false;
             }
@@ -92,7 +139,40 @@ public class ElbonianArabicConverter {
         return true;
     }
 
-    //create individual methods to check each rule one by one
+    //TODO: create individual methods to check each rule one by one
+    //STEP 1: helper function for rule 1
+    private boolean ruleOneTest(String num){
+
+        int maxStraight = 2;
+        char last = ' ';
+        int count = 1;
+
+        ArrayList<Character> twiceChars = new ArrayList<Character>();
+        twiceChars.add('M');
+        twiceChars.add('C');
+        twiceChars.add('X');
+        twiceChars.add('I');
+        for(char ruleOne: num.toCharArray()){
+            if(ruleOne == last) {
+                count += 1;
+
+                if (count > maxStraight) {
+                    return false;
+                }
+
+            }
+            else
+            {
+                last = ruleOne;
+                count = 1;
+            }
+
+        }
+        {
+        }
+        return true;
+
+    }
 
 
     private boolean magnitudeTest(String number) {
