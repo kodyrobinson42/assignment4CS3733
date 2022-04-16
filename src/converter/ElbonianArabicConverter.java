@@ -6,6 +6,8 @@ import converter.exceptions.ValueOutOfBoundsException;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Stack;
+
 /**
  * This class implements a converter that takes a string that represents a number in either the
  * Elbonian or Arabic numeral form. This class has methods that will return a value in the chosen form.
@@ -277,6 +279,46 @@ public class ElbonianArabicConverter {
 
 
 
+
+    private boolean magnitudeTest(String number) {
+        String N = "M";
+        Stack<String> stack = new Stack<String>();
+        int n = number.length();
+
+        for (int i = 0; i < n; i++) {
+            String c = Character.toString(number.charAt(i));
+            stack.push(c);
+//            if (c.equals("-")) {
+//                sign = -1;
+//            } else {
+//                count += conversionTable.get(c);
+//            }
+//            return false;
+//        }
+        }
+        return false;
+    }
+
+
+        // takes in an integer and decides if it's out of bounds
+    private boolean intOutOfBounds(String number)
+    {
+        int Number = Integer.parseInt(number);
+        if (Number >= 9999 || Number <= -9999)
+        {
+            return false;
+        }
+        else {
+            return true; // returns true if not out of bounds
+        }
+    }
+
+    // Removes leading and trailing spaces
+    // kinda useless to have as seperate function lol
+    private String trimSpace(String number)
+    {
+        return number.trim();
+    }
 
 
     /**
