@@ -60,16 +60,6 @@ public class ElbonianArabicConverter {
         ElbonianChar.add('D');
         ElbonianChar.add('M');
         ElbonianChar.add('N');
-        //lower-case
-        ElbonianChar.add('z');
-        ElbonianChar.add('i');
-        ElbonianChar.add('v');
-        ElbonianChar.add('x');
-        ElbonianChar.add('l');
-        ElbonianChar.add('c');
-        ElbonianChar.add('d');
-        ElbonianChar.add('m');
-        ElbonianChar.add('n');
 
         number = removeWhiteSpace(number);
 
@@ -83,38 +73,38 @@ public class ElbonianArabicConverter {
         if(!resultofTestOne){
             throw new MalformedNumberException("Failed Elbonian Numeral Rule 1!");
         }
-/*
+
         boolean resultofTestTwo = ruleTwoTest(number);
         if(!resultofTestTwo){
-            throw new MalformedNumberException("Failed Elbonian Numeral Rule 2!")
+            throw new MalformedNumberException("Failed Elbonian Numeral Rule 2!");
         }
 
         boolean resultofTestThree = ruleThreeTest(number);
         if(!resultofTestThree){
-            throw new MalformedNumberException("Failed Elbonian Numeral Rule 3!")
+            throw new MalformedNumberException("Failed Elbonian Numeral Rule 3!");
         }
 
         boolean resultofTestFour = ruleFourTest(number);
         if(!resultofTestFour){
-            throw new MalformedNumberException("Failed Elbonian Numeral Rule 4!")
+            throw new MalformedNumberException("Failed Elbonian Numeral Rule 4!");
         }
 
         boolean resultofTestFive = ruleFiveTest(number);
         if(!resultofTestFive){
-            throw new MalformedNumberException("Failed Elbonian Numeral Rule 5!")
+            throw new MalformedNumberException("Failed Elbonian Numeral Rule 5!");
         }
 
         boolean resultofTestSix = ruleOneTest(number);
         if(!resultofTestSix){
-            throw new MalformedNumberException("Failed Elbonian Numeral Rule 6!")
+            throw new MalformedNumberException("Failed Elbonian Numeral Rule 6!");
         }
 
         boolean resultofTestSeven = ruleOneTest(number);
         if(!resultofTestSeven){
-            throw new MalformedNumberException("Failed Elbonian Numeral Rule 7!")
+            throw new MalformedNumberException("Failed Elbonian Numeral Rule 7!");
         }
 
- */
+
 
 
 
@@ -175,6 +165,121 @@ public class ElbonianArabicConverter {
         return true;
 
     }
+
+    //STEP 2: helper function for rule 2
+    private boolean ruleTwoTest(String num){
+
+        int maxStraight = 3;
+        char last = ' ';
+        int count = 1;
+
+        ArrayList<Character> tripleChars = new ArrayList<Character>();
+        tripleChars.add('N');
+        tripleChars.add('D');
+        tripleChars.add('L');
+        tripleChars.add('V');
+        for(char ruleTwo: num.toCharArray()){
+            if(ruleTwo == last) {
+                count += 1;
+
+                if (count > maxStraight) {
+                    return false;
+                }
+
+            }
+            else
+            {
+                last = ruleTwo;
+                count = 1;
+            }
+
+        }
+        {
+        }
+        return true;
+
+    }
+    //STEP 3: helper function for rule 3
+    private boolean ruleThreeTest(String num) {
+        int countN = 0;
+        int maxCountN = 3;
+        char N = 'N';
+        char M = 'M';
+        for(char ruleThree: num.toCharArray()){
+            if(ruleThree == N){
+                countN += 1;
+            }
+            if(countN >= maxCountN){
+                if(ruleThree == M){
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    //STEP 4: helper function for rule 4
+    private boolean ruleFourTest(String num) {
+        int countD = 0;
+        int maxCountD = 3;
+        char D = 'D';
+        char C = 'C';
+        for(char ruleFour: num.toCharArray()){
+            if(ruleFour == D){
+                countD += 1;
+            }
+            if(countD >= maxCountD){
+                if(ruleFour == C){
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    //STEP 5: helper function for rule 5
+    private boolean ruleFiveTest(String num) {
+        int countL = 0;
+        int maxCountL = 3;
+        char L = 'L';
+        char X = 'C';
+        for(char ruleFive: num.toCharArray()){
+            if(ruleFive == L){
+                countL += 1;
+            }
+            if(countL >= maxCountL){
+                if(ruleFive == X){
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    //STEP 6: helper function for rule 6
+    private boolean ruleSixTest(String num) {
+        int countV = 0;
+        int maxCountV = 3;
+        char V = 'V';
+        char I = 'I';
+        for(char ruleSix: num.toCharArray()){
+            if(ruleSix == V){
+                countV += 1;
+            }
+            if(countV >= maxCountV){
+                if(ruleSix == I){
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+
+
+
+
+
 
 
     // ** Tests if it's in correct order
