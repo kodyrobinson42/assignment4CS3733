@@ -163,8 +163,11 @@ public class ConverterTests {
         assertEquals(converter.toArabic(), 9);
     }
 
+    @Test
     public void rule2Test3() throws MalformedNumberException, ValueOutOfBoundsException {
         ElbonianArabicConverter converter = new ElbonianArabicConverter("VVVV");
         assertEquals(converter.toArabic(), "MalformedNumberException");
     }
+
+
 }

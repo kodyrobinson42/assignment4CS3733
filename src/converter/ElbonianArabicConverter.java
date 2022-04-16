@@ -21,6 +21,7 @@ public class ElbonianArabicConverter {
 
     private final String number;
     ArrayList<Character> ElbonianChar = new ArrayList<Character>();
+    HashMap<String, Integer> conversionTable = new HashMap<String, Integer>();
 
     /**
      * Constructor for the ElbonianArabic class that takes a string. The string should contain a valid
@@ -38,6 +39,7 @@ public class ElbonianArabicConverter {
      */
     public ElbonianArabicConverter(String number) throws MalformedNumberException, ValueOutOfBoundsException {
         // TODO check to see if the number is valid, then set it equal to the string
+        initHash();
         ArrayList<Integer> ArabicInts = new ArrayList<Integer>();
         ArabicInts.add(0);
         ArabicInts.add(1);
@@ -175,28 +177,38 @@ public class ElbonianArabicConverter {
     }
 
 
-    private boolean magnitudeTest(String number) {
-        String N = "M";
+    // ** Tests if it's in correct order
+    // returns true if passes test
+    // false if breaks test
+    private boolean rule9Test(String number) {
         Stack<String> stack = new Stack<String>();
         int n = number.length();
 
         for (int i = 0; i < n; i++) {
             String c = Character.toString(number.charAt(i));
-            stack.push(c);
-//            if (c.equals("-")) {
-//                sign = -1;
-//            } else {
-//                count += conversionTable.get(c);
-//            }
-//            return false;
-//        }
+
+            if (stack.isEmpty())
+            {
+                stack.push(c);
+            }
+            else {
+                String last = stack.peek();
+                int compare = conversionTable.get(last);
+                int current = conversionTable.get(c);
+                if (current > compare) { // if current value is greater than last added value
+                    return false;
+                } else {
+                    stack.push(c);
+                }
+            }
         }
-        return false;
+        return true;
     }
 
 
+
         // takes in an integer and decides if it's out of bounds
-    private boolean intOutOfBounds(String number)
+    private boolean rule10Test(String number)
     {
         int Number = Integer.parseInt(number);
         if (Number >= 9999 || Number <= -9999)
@@ -208,24 +220,15 @@ public class ElbonianArabicConverter {
         }
     }
 
-    // Removes leading and trailing spaces
-    // kinda useless to have as seperate function lol
-    private String trimSpace(String number)
-    {
-        return number.trim();
-    }
-
-
     /**
      * Converts the number to an Arabic numeral or returns the current value as an int if it is already
      * in the Arabic form.
      *
      * @return An arabic value
      */
-    public int toArabic() {
-        // TODO Fill in the method's body
-        HashMap<String, Integer> conversionTable = new HashMap<String, Integer>();
 
+    private void initHash()
+    {   // builds hash
         conversionTable.put("N", 3000);
         conversionTable.put("M", 1000);
         conversionTable.put("D", 300);
@@ -235,6 +238,10 @@ public class ElbonianArabicConverter {
         conversionTable.put("V", 3);
         conversionTable.put("I", 1);
         conversionTable.put("Z", 0);
+    }
+
+    public int toArabic() {
+        // TODO Fill in the method's body
 
         String c2 = "-";
         int count = 0;

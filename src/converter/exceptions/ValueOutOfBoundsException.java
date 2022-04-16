@@ -14,7 +14,7 @@ public class ValueOutOfBoundsException extends Exception {
      * @param message A description of the error
      */
     public ValueOutOfBoundsException(String message) {
-        super(message);
+        super("Integer Out Of Bounds");
     }
 
 }
