@@ -1,6 +1,6 @@
 package converter;
 
-import com.sun.deploy.security.SelectableSecurityManager;
+//import com.sun.deploy.security.SelectableSecurityManager;
 import converter.exceptions.MalformedNumberException;
 import converter.exceptions.ValueOutOfBoundsException;
 
@@ -39,7 +39,7 @@ public class ElbonianArabicConverter {
      */
     public ElbonianArabicConverter(String number) throws MalformedNumberException, ValueOutOfBoundsException {
         // TODO check to see if the number is valid, then set it equal to the string
-        initHash();
+          initHash();
         ArrayList<Integer> ArabicInts = new ArrayList<Integer>();
         ArabicInts.add(0);
         ArabicInts.add(1);
@@ -94,21 +94,24 @@ public class ElbonianArabicConverter {
             throw new MalformedNumberException("Failed Elbonian Numeral Rule 5!");
         }
 
-        boolean resultofTestSix = ruleOneTest(number);
+        boolean resultofTestSix = ruleSixTest(number);
         if(!resultofTestSix){
             throw new MalformedNumberException("Failed Elbonian Numeral Rule 6!");
         }
 
-        boolean resultofTestSeven = ruleOneTest(number);
-        if(!resultofTestSeven){
-            throw new MalformedNumberException("Failed Elbonian Numeral Rule 7!");
+        boolean resultofTestSeven1 = ruleSevenTest1(number);
+        if(resultofTestSeven1 == false){
+            throw new MalformedNumberException("Failed Elbonian Numeral Rule 7: Extra '-'");
         }
 
-
-
-
-
-
+        boolean resultofTestSeven2 = ruleSevenTest2(number);
+        if (resultofTestSeven2 == true)
+        {
+            System.out.println("number is negative");
+        }
+        else {
+            System.out.println("number is postive");
+        }
 
 
 
@@ -133,7 +136,7 @@ public class ElbonianArabicConverter {
 
     //TODO: create individual methods to check each rule one by one
     //STEP 1: helper function for rule 1
-    private boolean ruleOneTest(String num){
+    private boolean ruleOneTest(String number){
 
         int maxStraight = 2;
         char last = ' ';
@@ -144,7 +147,7 @@ public class ElbonianArabicConverter {
         twiceChars.add('C');
         twiceChars.add('X');
         twiceChars.add('I');
-        for(char ruleOne: num.toCharArray()){
+        for(char ruleOne: number.toCharArray()){
             if(ruleOne == last) {
                 count += 1;
 
@@ -275,17 +278,72 @@ public class ElbonianArabicConverter {
         return true;
     }
 
+    // STEP 7:
+    // checks that negative sign is only at the beginning
+    // returns false if fails
+    public boolean ruleSevenTest1(String number) {
+        int n = number.length();
+        for (int i = 1; i < n; i++) {
+            String c = Character.toString(number.charAt(i));
+            if (c.equals("-"))
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    // checks for negative sign at beginning, returns true if neg. false if not
+    public boolean ruleSevenTest2(String number)
+    {
+            String c = Character.toString(number.charAt(0));
+            if (Character.toString(number.charAt(0)) == "-")
+            {
+                return true;
+            }
+        return false;
+    }
 
 
 
 
 
+    // STEP 8:
+    private boolean ruleEightTest(String number)
+    {
+        Stack<String> stack = new Stack<String>();
+        int n = number.length();
+        int zCount = 0;
+        for (int i = 0; i < n; i++) {
+            String c = Character.toString(number.charAt(i));
+            if (c == "Z")
+            {
+                zCount++;
+            }
+            if (stack.isEmpty())
+                {
+                    stack.push(c);
+                }
+            else {
+                String last = stack.peek();
+                if (last == "-" && c == "Z")
+                {
+                    return false;
+                }
+            }
+        }
+        if (zCount >= 2)
+        {
+            return false;
+        }
+        return true;
+    }
 
-
+    // STEP 9:
     // ** Tests if it's in correct order
     // returns true if passes test
     // false if breaks test
-    private boolean rule9Test(String number) {
+    private boolean ruleNineTest(String number) {
         Stack<String> stack = new Stack<String>();
         int n = number.length();
 
@@ -313,7 +371,7 @@ public class ElbonianArabicConverter {
 
 
         // takes in an integer and decides if it's out of bounds
-    private boolean rule10Test(String number)
+    private boolean ruleTenTest(String number)
     {
         int Number = Integer.parseInt(number);
         if (Number >= 9999 || Number <= -9999)
@@ -331,19 +389,6 @@ public class ElbonianArabicConverter {
      *
      * @return An arabic value
      */
-
-    private void initHash()
-    {   // builds hash
-        conversionTable.put("N", 3000);
-        conversionTable.put("M", 1000);
-        conversionTable.put("D", 300);
-        conversionTable.put("C", 100);
-        conversionTable.put("L", 30);
-        conversionTable.put("X", 10);
-        conversionTable.put("V", 3);
-        conversionTable.put("I", 1);
-        conversionTable.put("Z", 0);
-    }
 
     public int toArabic() {
         // TODO Fill in the method's body
@@ -376,6 +421,19 @@ public class ElbonianArabicConverter {
     public String toElbonian() {
         // TODO Fill in the method's body
         return "I";
+    }
+
+    private void initHash()
+    {   // builds hash
+        conversionTable.put("N", 3000);
+        conversionTable.put("M", 1000);
+        conversionTable.put("D", 300);
+        conversionTable.put("C", 100);
+        conversionTable.put("L", 30);
+        conversionTable.put("X", 10);
+        conversionTable.put("V", 3);
+        conversionTable.put("I", 1);
+        conversionTable.put("Z", 0);
     }
 
 }

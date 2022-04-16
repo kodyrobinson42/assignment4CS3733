@@ -163,11 +163,76 @@ public class ConverterTests {
         assertEquals(converter.toArabic(), 9);
     }
 
+
     @Test
     public void rule2Test3() throws MalformedNumberException, ValueOutOfBoundsException {
         ElbonianArabicConverter converter = new ElbonianArabicConverter("VVVV");
         assertEquals(converter.toArabic(), "MalformedNumberException");
     }
+
+    // TEST 7:
+    // change after making tests private
+    @Test
+    public void rule7Test1() throws MalformedNumberException, ValueOutOfBoundsException {
+        ElbonianArabicConverter convert = new ElbonianArabicConverter("-L");
+        String c = "-L";
+        assertEquals(convert.ruleSevenTest1(c), true);
+    }
+
+    @Test
+    public void rule7Test2() throws MalformedNumberException, ValueOutOfBoundsException {
+        ElbonianArabicConverter convert = new ElbonianArabicConverter("L-");
+        String c = "L-";
+        assertEquals(convert.ruleSevenTest1(c), false);
+    }
+
+    @Test
+    public void rule7Test3() throws MalformedNumberException, ValueOutOfBoundsException {
+        ElbonianArabicConverter convert = new ElbonianArabicConverter("LXV-I");
+        String c = "LXV-I";
+        assertEquals(convert.ruleSevenTest1(c), false);
+    }
+
+    @Test
+    public void rule7Test6() throws MalformedNumberException, ValueOutOfBoundsException {
+        ElbonianArabicConverter convert = new ElbonianArabicConverter("L-");
+        String c = "L";
+        assertEquals(convert.ruleSevenTest1(c), true);
+    }
+
+
+    @Test
+    public void rule7Test4() throws MalformedNumberException, ValueOutOfBoundsException {
+        ElbonianArabicConverter convert = new ElbonianArabicConverter("-L");
+        String c = "-L";
+        assertEquals(convert.ruleSevenTest2(c), false);
+    }
+    @Test
+    public void rule7Test5() throws MalformedNumberException, ValueOutOfBoundsException {
+        ElbonianArabicConverter convert = new ElbonianArabicConverter("L");
+        String c = "L";
+        assertEquals(convert.ruleSevenTest2(c), false);
+    }
+
+
+//    @Test
+//    public void rule9Test1() throws MalformedNumberException, ValueOutOfBoundsException {
+//        ElbonianArabicConverter converter = new ElbonianArabicConverter("VL");
+//        assertEquals(converter.ruleNineTest(), false);
+//    }
+//
+//    @Test
+//    public void rule9Test2() throws MalformedNumberException, ValueOutOfBoundsException {
+//        ElbonianArabicConverter converter = new ElbonianArabicConverter("MDCN");
+//        assertEquals(converter.ruleNineTest(), false);
+//    }
+//
+//    @Test
+//    public void rule9Test3() throws MalformedNumberException, ValueOutOfBoundsException {
+//        ElbonianArabicConverter converter = new ElbonianArabicConverter("MV");
+//        assertEquals(converter.ruleNineTest(), true);
+//    }
+
 
 
 }
