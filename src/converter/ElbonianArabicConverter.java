@@ -419,8 +419,83 @@ public class ElbonianArabicConverter {
      * @return An Elbonian value
      */
     public String toElbonian() {
-        // TODO Fill in the method's body
-        return "I";
+        // convert String to Int
+        ArrayList<Integer> arr = new ArrayList<Integer>();
+        String eeeee = null;
+        int length = 0;
+        int remainder = 0;
+        int arabic = Integer.parseInt(this.number);
+        while (arabic != 0)
+        {
+            divide(arabic, "N", arr);
+            length = arr.get(0);
+            for (int i = 0; i < length; i++)
+            {
+                eeeee += "N";
+            }
+            remainder = arr.get(0);
+
+            divide(arabic, "M", arr);
+            length = arr.get(1);
+            for (int i = 0; i < length; i++)
+            {
+                eeeee += "M";
+            }
+            remainder = arr.get(1);
+            //
+            divide(arabic, "D", arr);
+            length = arr.get(1);
+            for (int i = 0; i < length; i++)
+            {
+                eeeee += "D";
+            }
+            remainder = arr.get(1);
+            //
+            divide(arabic, "L", arr);
+            length = arr.get(1);
+            for (int i = 0; i < length; i++)
+            {
+                eeeee += "L";
+            }
+            remainder = arr.get(1);
+            //
+            divide(arabic, "X", arr);
+            length = arr.get(1);
+            for (int i = 0; i < length; i++)
+            {
+                eeeee += "X";
+            }
+            remainder = arr.get(1);
+            //
+            divide(arabic, "V", arr);
+            length = arr.get(1);
+            for (int i = 0; i < length; i++)
+            {
+                eeeee += "V";
+            }
+            remainder = arr.get(1);
+            //
+            divide(arabic, "I", arr);
+            length = arr.get(1);
+            for (int i = 0; i < length; i++)
+            {
+                eeeee += "I";
+            }
+            remainder = arr.get(1);
+    }
+    String yell = "yellow";
+        return yell;
+}
+
+    public ArrayList<Integer> divide(int Number, String code, ArrayList<Integer> arr)
+    {
+        int divisor = Number / conversionTable.get(code);
+        int num0fDIvision = Number / divisor;
+        int remainder = Number / conversionTable.get(code);
+
+        arr.add(0,num0fDIvision);
+        arr.add(1,remainder);
+        return arr;
     }
 
     private void initHash()
