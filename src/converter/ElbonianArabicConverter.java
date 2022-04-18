@@ -60,6 +60,7 @@ public class ElbonianArabicConverter {
         ElbonianChar.add('D');
         ElbonianChar.add('M');
         ElbonianChar.add('N');
+        ElbonianChar.add('-');
 
         number = removeWhiteSpace(number);
 

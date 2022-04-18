@@ -3,7 +3,9 @@ package converter.tests;
 import converter.ElbonianArabicConverter;
 import converter.exceptions.MalformedNumberException;
 import converter.exceptions.ValueOutOfBoundsException;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 import static org.junit.Assert.assertEquals;
 
@@ -131,10 +133,15 @@ public class ConverterTests {
         assertEquals(converter.toElbonian(), "N");
     }
 
+    @Rule
+    public ExpectedException exception = ExpectedException.none();
     @Test
     public void rule1Test1() throws MalformedNumberException, ValueOutOfBoundsException {
+        exception.expect(MalformedNumberException.class);
+        exception.expectMessage("Failed Elbonian Numeral Rule 1!");
+
         ElbonianArabicConverter converter = new ElbonianArabicConverter("CCCXII");
-        assertEquals(converter.toArabic(), 212);
+        converter.toArabic();
     }
 
     @Test
@@ -159,15 +166,18 @@ public class ConverterTests {
     @Test
 
     public void rule2Test1() throws MalformedNumberException, ValueOutOfBoundsException {
-        ElbonianArabicConverter converter = new ElbonianArabicConverter("VVV");
-        assertEquals(converter.toArabic(), 9);
+        ElbonianArabicConverter converter = new ElbonianArabicConverter("VV");
+        assertEquals(converter.toArabic(), 6);
     }
 
-
+    public ExpectedException exception2 = ExpectedException.none();
     @Test
     public void rule2Test3() throws MalformedNumberException, ValueOutOfBoundsException {
+        exception2.expect(MalformedNumberException.class);
+        exception2.expectMessage("Failed Elbonian Numeral Rule 2!");
+
         ElbonianArabicConverter converter = new ElbonianArabicConverter("VVVV");
-        assertEquals(converter.toArabic(), "MalformedNumberException");
+        converter.toArabic();
     }
 
     // TEST 7:
