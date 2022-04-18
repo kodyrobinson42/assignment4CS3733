@@ -214,6 +214,25 @@ public class ConverterTests {
         assertEquals(convert.ruleSevenTest2(c), false);
     }
 
+    @Test
+    public void RuletoElbonian1() throws MalformedNumberException, ValueOutOfBoundsException {
+        ElbonianArabicConverter convert = new ElbonianArabicConverter("7300");
+        assertEquals(convert.toElbonian(), "NNMD");
+    }
+
+    @Test
+    public void RuletoElbonian2() throws MalformedNumberException, ValueOutOfBoundsException {
+        ElbonianArabicConverter convert = new ElbonianArabicConverter("8744");
+        assertEquals(convert.toElbonian(), "NNMMDDCLXVI");
+    }
+
+    @Test
+    public void RuletoElbonian3()  throws MalformedNumberException, ValueOutOfBoundsException {
+        ElbonianArabicConverter convert = new ElbonianArabicConverter("0");
+        assertEquals(convert.toElbonian(), "Z");
+    }
+
+
 
 //    @Test
 //    public void rule9Test1() throws MalformedNumberException, ValueOutOfBoundsException {

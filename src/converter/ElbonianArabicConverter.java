@@ -40,78 +40,78 @@ public class ElbonianArabicConverter {
     public ElbonianArabicConverter(String number) throws MalformedNumberException, ValueOutOfBoundsException {
         // TODO check to see if the number is valid, then set it equal to the string
           initHash();
-        ArrayList<Integer> ArabicInts = new ArrayList<Integer>();
-        ArabicInts.add(0);
-        ArabicInts.add(1);
-        ArabicInts.add(3);
-        ArabicInts.add(10);
-        ArabicInts.add(30);
-        ArabicInts.add(100);
-        ArabicInts.add(300);
-        ArabicInts.add(1000);
-        ArabicInts.add(3000);
-        //upper-case
-        ElbonianChar.add('Z');
-        ElbonianChar.add('I');
-        ElbonianChar.add('V');
-        ElbonianChar.add('X');
-        ElbonianChar.add('L');
-        ElbonianChar.add('C');
-        ElbonianChar.add('D');
-        ElbonianChar.add('M');
-        ElbonianChar.add('N');
-
-        number = removeWhiteSpace(number);
-
-        boolean isInElbonianAlphabet = checkIfElbonian(number);
-        if(!isInElbonianAlphabet){
-            throw new MalformedNumberException("The string contains letters not in the Elbonian Alphabet!");
-
-        }
-
-        boolean resultofTestOne = ruleOneTest(number);
-        if(!resultofTestOne){
-            throw new MalformedNumberException("Failed Elbonian Numeral Rule 1!");
-        }
-
-        boolean resultofTestTwo = ruleTwoTest(number);
-        if(!resultofTestTwo){
-            throw new MalformedNumberException("Failed Elbonian Numeral Rule 2!");
-        }
-
-        boolean resultofTestThree = ruleThreeTest(number);
-        if(!resultofTestThree){
-            throw new MalformedNumberException("Failed Elbonian Numeral Rule 3!");
-        }
-
-        boolean resultofTestFour = ruleFourTest(number);
-        if(!resultofTestFour){
-            throw new MalformedNumberException("Failed Elbonian Numeral Rule 4!");
-        }
-
-        boolean resultofTestFive = ruleFiveTest(number);
-        if(!resultofTestFive){
-            throw new MalformedNumberException("Failed Elbonian Numeral Rule 5!");
-        }
-
-        boolean resultofTestSix = ruleSixTest(number);
-        if(!resultofTestSix){
-            throw new MalformedNumberException("Failed Elbonian Numeral Rule 6!");
-        }
-
-        boolean resultofTestSeven1 = ruleSevenTest1(number);
-        if(resultofTestSeven1 == false){
-            throw new MalformedNumberException("Failed Elbonian Numeral Rule 7: Extra '-'");
-        }
-
-        boolean resultofTestSeven2 = ruleSevenTest2(number);
-        if (resultofTestSeven2 == true)
-        {
-            System.out.println("number is negative");
-        }
-        else {
-            System.out.println("number is postive");
-        }
+//        ArrayList<Integer> ArabicInts = new ArrayList<Integer>();
+//        ArabicInts.add(0);
+//        ArabicInts.add(1);
+//        ArabicInts.add(3);
+//        ArabicInts.add(10);
+//        ArabicInts.add(30);
+//        ArabicInts.add(100);
+//        ArabicInts.add(300);
+//        ArabicInts.add(1000);
+//        ArabicInts.add(3000);
+//        //upper-case
+//        ElbonianChar.add('Z');
+//        ElbonianChar.add('I');
+//        ElbonianChar.add('V');
+//        ElbonianChar.add('X');
+//        ElbonianChar.add('L');
+//        ElbonianChar.add('C');
+//        ElbonianChar.add('D');
+//        ElbonianChar.add('M');
+//        ElbonianChar.add('N');
+//
+//        number = removeWhiteSpace(number);
+//
+//        boolean isInElbonianAlphabet = checkIfElbonian(number);
+//        if(!isInElbonianAlphabet){
+//            throw new MalformedNumberException("The string contains letters not in the Elbonian Alphabet!");
+//
+//        }
+//
+//        boolean resultofTestOne = ruleOneTest(number);
+//        if(!resultofTestOne){
+//            throw new MalformedNumberException("Failed Elbonian Numeral Rule 1!");
+//        }
+//
+//        boolean resultofTestTwo = ruleTwoTest(number);
+//        if(!resultofTestTwo){
+//            throw new MalformedNumberException("Failed Elbonian Numeral Rule 2!");
+//        }
+//
+//        boolean resultofTestThree = ruleThreeTest(number);
+//        if(!resultofTestThree){
+//            throw new MalformedNumberException("Failed Elbonian Numeral Rule 3!");
+//        }
+//
+//        boolean resultofTestFour = ruleFourTest(number);
+//        if(!resultofTestFour){
+//            throw new MalformedNumberException("Failed Elbonian Numeral Rule 4!");
+//        }
+//
+//        boolean resultofTestFive = ruleFiveTest(number);
+//        if(!resultofTestFive){
+//            throw new MalformedNumberException("Failed Elbonian Numeral Rule 5!");
+//        }
+//
+//        boolean resultofTestSix = ruleSixTest(number);
+//        if(!resultofTestSix){
+//            throw new MalformedNumberException("Failed Elbonian Numeral Rule 6!");
+//        }
+//
+//        boolean resultofTestSeven1 = ruleSevenTest1(number);
+//        if(resultofTestSeven1 == false){
+//            throw new MalformedNumberException("Failed Elbonian Numeral Rule 7: Extra '-'");
+//        }
+//
+//        boolean resultofTestSeven2 = ruleSevenTest2(number);
+//        if (resultofTestSeven2 == true)
+//        {
+//            System.out.println("number is negative");
+//        }
+//        else {
+//            System.out.println("number is postive");
+//        }
 
 
 
@@ -421,80 +421,98 @@ public class ElbonianArabicConverter {
     public String toElbonian() {
         // convert String to Int
         ArrayList<Integer> arr = new ArrayList<Integer>();
-        String eeeee = null;
-        int length = 0;
-        int remainder = 0;
         int arabic = Integer.parseInt(this.number);
-        while (arabic != 0)
+        String elbonian = "";
+        int length;
+        int remainder;
+        if (arabic == 0)
         {
-            divide(arabic, "N", arr);
-            length = arr.get(0);
-            for (int i = 0; i < length; i++)
-            {
-                eeeee += "N";
-            }
-            remainder = arr.get(0);
+            return "Z";
+        }
+        else {
+            while (arabic != 0) {
+                divide(arabic, "N", arr);
+                // returns array, arr[0] number of times N, and arr[1] returns remainder
+                for (int i = 0; i < arr.get(0); i++) {
+                    elbonian += "N";
+                }
+                remainder = arr.get(1);
+                arabic = remainder;
 
-            divide(arabic, "M", arr);
-            length = arr.get(1);
-            for (int i = 0; i < length; i++)
-            {
-                eeeee += "M";
+                if (remainder != 0) {
+                    divide(remainder, "M", arr);
+                    for (int i = 0; i < arr.get(0); i++) {
+                        elbonian += "M";
+                    }
+                    remainder = arr.get(1);
+                    arabic = remainder;
+
+                    if (remainder != 0) {
+                        divide(remainder, "D", arr);
+                        for (int i = 0; i < arr.get(0); i++) {
+                            elbonian += "D";
+                        }
+                        remainder = arr.get(1);
+                        arabic = remainder;
+                        //
+                        if (remainder != 0) {
+                            divide(remainder, "C", arr);
+                            for (int i = 0; i < arr.get(0); i++) {
+                                elbonian += "C";
+                            }
+                            remainder = arr.get(1);
+                            arabic = remainder;
+                            //
+
+                            if (remainder != 0) {
+                                divide(remainder, "L", arr);
+                                for (int i = 0; i < arr.get(0); i++) {
+                                    elbonian += "L";
+                                }
+                                remainder = arr.get(1);
+                                arabic = remainder;
+                                if (remainder != 0) {
+                                    divide(remainder, "X", arr);
+                                    for (int i = 0; i < arr.get(0); i++) {
+                                        elbonian += "X";
+                                    }
+                                    remainder = arr.get(1);
+                                    arabic = remainder;
+                                    if (remainder != 0) {
+                                        //
+                                        divide(remainder, "V", arr);
+                                        for (int i = 0; i < arr.get(0); i++) {
+                                            elbonian += "V";
+                                        }
+                                        remainder = arr.get(1);
+                                        arabic = remainder;
+                                        //
+                                        if (remainder != 0) {
+                                            divide(remainder, "I", arr);
+                                            for (int i = 0; i < arr.get(0); i++) {
+                                                elbonian += "I";
+                                            }
+                                            remainder = arr.get(1);
+                                            arabic = remainder;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
             }
-            remainder = arr.get(1);
-            //
-            divide(arabic, "D", arr);
-            length = arr.get(1);
-            for (int i = 0; i < length; i++)
-            {
-                eeeee += "D";
-            }
-            remainder = arr.get(1);
-            //
-            divide(arabic, "L", arr);
-            length = arr.get(1);
-            for (int i = 0; i < length; i++)
-            {
-                eeeee += "L";
-            }
-            remainder = arr.get(1);
-            //
-            divide(arabic, "X", arr);
-            length = arr.get(1);
-            for (int i = 0; i < length; i++)
-            {
-                eeeee += "X";
-            }
-            remainder = arr.get(1);
-            //
-            divide(arabic, "V", arr);
-            length = arr.get(1);
-            for (int i = 0; i < length; i++)
-            {
-                eeeee += "V";
-            }
-            remainder = arr.get(1);
-            //
-            divide(arabic, "I", arr);
-            length = arr.get(1);
-            for (int i = 0; i < length; i++)
-            {
-                eeeee += "I";
-            }
-            remainder = arr.get(1);
+        }
+        return elbonian;
     }
-    String yell = "yellow";
-        return yell;
-}
 
-    public ArrayList<Integer> divide(int Number, String code, ArrayList<Integer> arr)
+
+    public ArrayList<Integer> divide(int remainder, String code, ArrayList<Integer> arr)
     {
-        int divisor = Number / conversionTable.get(code);
-        int num0fDIvision = Number / divisor;
-        int remainder = Number / conversionTable.get(code);
-
-        arr.add(0,num0fDIvision);
-        arr.add(1,remainder);
+        int num0fDivision = remainder / conversionTable.get(code);
+        int newRemainder = remainder % conversionTable.get(code);
+        arr.add(0,num0fDivision);
+        arr.add(1,newRemainder);
         return arr;
     }
 
