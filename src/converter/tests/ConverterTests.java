@@ -250,6 +250,17 @@ public class ConverterTests {
         ElbonianArabicConverter convert = new ElbonianArabicConverter("0");
         assertEquals(convert.toElbonian(), "Z");
     }
+    @Test
+    public void Rule11Test1() throws MalformedNumberException, ValueOutOfBoundsException {
+        exception.expect(MalformedNumberException.class);
+        ElbonianArabicConverter convert = new ElbonianArabicConverter("V V");
+    }
+
+    @Test
+    public void Rule11Test2() throws MalformedNumberException, ValueOutOfBoundsException {
+        exception.expect(MalformedNumberException.class);
+        ElbonianArabicConverter convert = new ElbonianArabicConverter(" V");
+    }
 
     @Test
     public void MiscRule1() throws MalformedNumberException, ValueOutOfBoundsException {

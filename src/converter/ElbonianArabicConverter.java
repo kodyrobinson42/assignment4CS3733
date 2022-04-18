@@ -510,6 +510,12 @@ public class ElbonianArabicConverter {
         }
         else {
             while (arabic != 0) {
+                if (arabic <= -1)
+                {
+                    elbonian += "-";
+                }
+                arabic = (arabic * -1);
+
                 divide(arabic, "N", arr);
                 // returns array, arr[0] number of times N, and arr[1] returns remainder
                 for (int i = 0; i < arr.get(0); i++) {
