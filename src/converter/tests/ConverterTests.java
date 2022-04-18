@@ -153,14 +153,20 @@ public class ConverterTests {
 
     @Test
     public void rule1Test3() throws MalformedNumberException, ValueOutOfBoundsException {
+
+
         ElbonianArabicConverter converter = new ElbonianArabicConverter("2120");
-        assertEquals(converter.toElbonian(), "MMMCXXX");
+        assertEquals(converter.toElbonian(), "MMCXX");
     }
 
     @Test
     public void rule1Test4() throws MalformedNumberException, ValueOutOfBoundsException {
+        exception.expect(MalformedNumberException.class);
+        exception.expectMessage("Failed Elbonian Numeral Rule 1!");
+
+
         ElbonianArabicConverter converter = new ElbonianArabicConverter("MMMCXXX");
-        assertEquals(converter, "MalformedNumberException");
+
     }
 
     @Test
@@ -169,12 +175,11 @@ public class ConverterTests {
         ElbonianArabicConverter converter = new ElbonianArabicConverter("VV");
         assertEquals(converter.toArabic(), 6);
     }
-    @Rule
-    public ExpectedException exception2 = ExpectedException.none();
+
     @Test
     public void rule2Test3() throws MalformedNumberException, ValueOutOfBoundsException {
-        exception2.expect(MalformedNumberException.class);
-        exception2.expectMessage("Failed Elbonian Numeral Rule 2!");
+        exception.expect(MalformedNumberException.class);
+        exception.expectMessage("Failed Elbonian Numeral Rule 2!");
 
         ElbonianArabicConverter converter = new ElbonianArabicConverter("VVVV");
         converter.toArabic();
