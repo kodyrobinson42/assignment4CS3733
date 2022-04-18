@@ -196,23 +196,27 @@ public class ConverterTests {
 
     @Test
     public void rule7Test2() throws MalformedNumberException, ValueOutOfBoundsException {
+        exception.expect(MalformedNumberException.class);
+        //exception.expectMessage();
         ElbonianArabicConverter convert = new ElbonianArabicConverter("L-");
         String c = "L-";
-        assertEquals(convert.ruleSevenTest1(c), false);
+
     }
 
     @Test
     public void rule7Test3() throws MalformedNumberException, ValueOutOfBoundsException {
+        exception.expect(MalformedNumberException.class);
         ElbonianArabicConverter convert = new ElbonianArabicConverter("LXV-I");
         String c = "LXV-I";
-        assertEquals(convert.ruleSevenTest1(c), false);
+        //assertEquals(convert.ruleSevenTest1(c), false);
     }
 
     @Test
     public void rule7Test6() throws MalformedNumberException, ValueOutOfBoundsException {
+        exception.expect(MalformedNumberException.class);
         ElbonianArabicConverter convert = new ElbonianArabicConverter("L-");
         String c = "L";
-        assertEquals(convert.ruleSevenTest1(c), true);
+        //assertEquals(convert.ruleSevenTest1(c), true);
     }
 
 
