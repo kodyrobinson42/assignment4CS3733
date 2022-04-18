@@ -129,7 +129,7 @@ public class ElbonianArabicConverter {
         }
 
         boolean resultofTest11 = Rule11Test(number);
-        if(resultofTestSeven1 == false){
+        if(resultofTest11 == false){
             throw new MalformedNumberException("Failed Elbonian Numeral Rule 11: Extra ' '");
         }
 
