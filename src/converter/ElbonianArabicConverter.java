@@ -130,10 +130,13 @@ public class ElbonianArabicConverter {
 
         boolean resultofTest11 = Rule11Test(number);
         if(resultofTest11 == false){
-            throw new MalformedNumberException("Failed Elbonian Numeral Rule 11: Extra ' '");
+            throw new MalformedNumberException("Failed Elbonian Numeral Rule 11: Extra Space");
         }
 
-
+        boolean resultofTest9 = ruleNineTest(number);
+        if(resultofTest11 == false){
+            throw new MalformedNumberException("Failed Elbonian Numeral Rule 9: Out of Order");
+        }
         this.number = number;
     }
 
@@ -461,12 +464,12 @@ public class ElbonianArabicConverter {
     }
 
 
-    public boolean Rule11Test(String number)
-    {
-        for (int i = 0; i < number.length() ;i++)
-        {
-            if (Character.toString(number.charAt(i)) == " ");
-            return false;
+    public boolean Rule11Test(String number) {
+        for (int i = 0; i < number.length(); i++) {
+            System.out.println(number.charAt(i));
+            if (Character.toString(number.charAt(i)) == " ") {
+                return false;
+            }
         }
         return true;
     }
