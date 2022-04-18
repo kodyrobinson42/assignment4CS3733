@@ -255,18 +255,18 @@ public class ConverterTests {
         exception.expect(MalformedNumberException.class);
         ElbonianArabicConverter convert = new ElbonianArabicConverter("V V");
     }
-
-    @Test
-    public void Rule11Test2() throws MalformedNumberException, ValueOutOfBoundsException {
-        exception.expect(MalformedNumberException.class);
-        ElbonianArabicConverter convert = new ElbonianArabicConverter(" V");
-    }
-
-    @Test
-    public void MiscRule1() throws MalformedNumberException, ValueOutOfBoundsException {
-        ElbonianArabicConverter convert = new ElbonianArabicConverter("NNNDDDLLLVVV");
-        assertEquals(convert.toArabic(), 9999);
-    }
+//
+//    @Test
+//    public void Rule11Test2() throws MalformedNumberException, ValueOutOfBoundsException {
+//        exception.expect(MalformedNumberException.class);
+//        ElbonianArabicConverter convert = new ElbonianArabicConverter(" V");
+//    }
+//
+//    @Test
+//    public void MiscRule1() throws MalformedNumberException, ValueOutOfBoundsException {
+//        ElbonianArabicConverter convert = new ElbonianArabicConverter("NNNDDDLLLVVV");
+//        assertEquals(convert.toArabic(), 9999);
+//    }
 
     @Test
     public void MiscRule2() throws MalformedNumberException, ValueOutOfBoundsException {
