@@ -40,78 +40,78 @@ public class ElbonianArabicConverter {
     public ElbonianArabicConverter(String number) throws MalformedNumberException, ValueOutOfBoundsException {
         // TODO check to see if the number is valid, then set it equal to the string
           initHash();
-//        ArrayList<Integer> ArabicInts = new ArrayList<Integer>();
-//        ArabicInts.add(0);
-//        ArabicInts.add(1);
-//        ArabicInts.add(3);
-//        ArabicInts.add(10);
-//        ArabicInts.add(30);
-//        ArabicInts.add(100);
-//        ArabicInts.add(300);
-//        ArabicInts.add(1000);
-//        ArabicInts.add(3000);
-//        //upper-case
-//        ElbonianChar.add('Z');
-//        ElbonianChar.add('I');
-//        ElbonianChar.add('V');
-//        ElbonianChar.add('X');
-//        ElbonianChar.add('L');
-//        ElbonianChar.add('C');
-//        ElbonianChar.add('D');
-//        ElbonianChar.add('M');
-//        ElbonianChar.add('N');
-//
-//        number = removeWhiteSpace(number);
-//
-//        boolean isInElbonianAlphabet = checkIfElbonian(number);
-//        if(!isInElbonianAlphabet){
-//            throw new MalformedNumberException("The string contains letters not in the Elbonian Alphabet!");
-//
-//        }
-//
-//        boolean resultofTestOne = ruleOneTest(number);
-//        if(!resultofTestOne){
-//            throw new MalformedNumberException("Failed Elbonian Numeral Rule 1!");
-//        }
-//
-//        boolean resultofTestTwo = ruleTwoTest(number);
-//        if(!resultofTestTwo){
-//            throw new MalformedNumberException("Failed Elbonian Numeral Rule 2!");
-//        }
-//
-//        boolean resultofTestThree = ruleThreeTest(number);
-//        if(!resultofTestThree){
-//            throw new MalformedNumberException("Failed Elbonian Numeral Rule 3!");
-//        }
-//
-//        boolean resultofTestFour = ruleFourTest(number);
-//        if(!resultofTestFour){
-//            throw new MalformedNumberException("Failed Elbonian Numeral Rule 4!");
-//        }
-//
-//        boolean resultofTestFive = ruleFiveTest(number);
-//        if(!resultofTestFive){
-//            throw new MalformedNumberException("Failed Elbonian Numeral Rule 5!");
-//        }
-//
-//        boolean resultofTestSix = ruleSixTest(number);
-//        if(!resultofTestSix){
-//            throw new MalformedNumberException("Failed Elbonian Numeral Rule 6!");
-//        }
-//
-//        boolean resultofTestSeven1 = ruleSevenTest1(number);
-//        if(resultofTestSeven1 == false){
-//            throw new MalformedNumberException("Failed Elbonian Numeral Rule 7: Extra '-'");
-//        }
-//
-//        boolean resultofTestSeven2 = ruleSevenTest2(number);
-//        if (resultofTestSeven2 == true)
-//        {
-//            System.out.println("number is negative");
-//        }
-//        else {
-//            System.out.println("number is postive");
-//        }
+        ArrayList<Integer> ArabicInts = new ArrayList<Integer>();
+        ArabicInts.add(0);
+        ArabicInts.add(1);
+        ArabicInts.add(3);
+        ArabicInts.add(10);
+        ArabicInts.add(30);
+        ArabicInts.add(100);
+        ArabicInts.add(300);
+        ArabicInts.add(1000);
+        ArabicInts.add(3000);
+        //upper-case
+        ElbonianChar.add('Z');
+        ElbonianChar.add('I');
+        ElbonianChar.add('V');
+        ElbonianChar.add('X');
+        ElbonianChar.add('L');
+        ElbonianChar.add('C');
+        ElbonianChar.add('D');
+        ElbonianChar.add('M');
+        ElbonianChar.add('N');
+
+        number = removeWhiteSpace(number);
+
+        boolean isInElbonianAlphabet = checkIfElbonian(number);
+        if(!isInElbonianAlphabet){
+            throw new MalformedNumberException("The string contains letters not in the Elbonian Alphabet!");
+
+        }
+
+        boolean resultofTestOne = ruleOneTest(number);
+        if(!resultofTestOne){
+            throw new MalformedNumberException("Failed Elbonian Numeral Rule 1!");
+        }
+
+        boolean resultofTestTwo = ruleTwoTest(number);
+        if(!resultofTestTwo){
+            throw new MalformedNumberException("Failed Elbonian Numeral Rule 2!");
+        }
+
+        boolean resultofTestThree = ruleThreeTest(number);
+        if(!resultofTestThree){
+            throw new MalformedNumberException("Failed Elbonian Numeral Rule 3!");
+        }
+
+        boolean resultofTestFour = ruleFourTest(number);
+        if(!resultofTestFour){
+            throw new MalformedNumberException("Failed Elbonian Numeral Rule 4!");
+        }
+
+        boolean resultofTestFive = ruleFiveTest(number);
+        if(!resultofTestFive){
+            throw new MalformedNumberException("Failed Elbonian Numeral Rule 5!");
+        }
+
+        boolean resultofTestSix = ruleSixTest(number);
+        if(!resultofTestSix){
+            throw new MalformedNumberException("Failed Elbonian Numeral Rule 6!");
+        }
+
+        boolean resultofTestSeven1 = ruleSevenTest1(number);
+        if(resultofTestSeven1 == false){
+            throw new MalformedNumberException("Failed Elbonian Numeral Rule 7: Extra '-'");
+        }
+
+        boolean resultofTestSeven2 = ruleSevenTest2(number);
+        if (resultofTestSeven2 == true)
+        {
+            System.out.println("number is negative");
+        }
+        else {
+            System.out.println("number is postive");
+        }
 
 
 
