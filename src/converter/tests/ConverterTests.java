@@ -255,6 +255,24 @@ public class ConverterTests {
         exception.expect(MalformedNumberException.class);
         ElbonianArabicConverter convert = new ElbonianArabicConverter("V V");
     }
+
+    @Test
+    public void Rule12Test1() throws MalformedNumberException, ValueOutOfBoundsException{
+        exception.expect(MalformedNumberException.class);
+        ElbonianArabicConverter converter = new ElbonianArabicConverter("abcdef");
+    }
+
+    @Test
+    public void Rule12Test2() throws MalformedNumberException, ValueOutOfBoundsException{
+        exception.expect(MalformedNumberException.class);
+        ElbonianArabicConverter converter = new ElbonianArabicConverter("aMCXI");
+    }
+
+    @Test
+    public void Rule12Test3() throws MalformedNumberException, ValueOutOfBoundsException{
+        exception.expect(MalformedNumberException.class);
+        ElbonianArabicConverter converter = new ElbonianArabicConverter("DMxVI");
+    }
 //
 //    @Test
 //    public void Rule11Test2() throws MalformedNumberException, ValueOutOfBoundsException {
