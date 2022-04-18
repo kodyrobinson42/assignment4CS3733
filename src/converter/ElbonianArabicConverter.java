@@ -61,6 +61,8 @@ public class ElbonianArabicConverter {
         ElbonianChar.add('M');
         ElbonianChar.add('N');
         ElbonianChar.add('-');
+        ElbonianChar.add('0');
+
 
         number = removeWhiteSpace(number);
 
@@ -114,18 +116,6 @@ public class ElbonianArabicConverter {
             System.out.println("number is postive");
         }
 
-        boolean resultofTestNine = ruleNineTest(number);
-        if (resultofTestNine == false)
-        {
-            throw new MalformedNumberException("Failed Elbonian Numeral Rule 9: Not in Greatest to Smallest Order");
-        }
-
-         boolean resultofTestTen = ruleNineTest(number);
-        if (resultofTestTen == false)
-        {
-            throw new ValueOutOfBoundsException("Value Out of Bounds");
-        }
-
 
 
         this.number = number;
@@ -153,7 +143,11 @@ public class ElbonianArabicConverter {
 
         int maxStraight = 2;
         char last = ' ';
-        int count = 1;
+        //int count = 1;
+        int countM = 1;
+        int countC = 1;
+        int countX = 1;
+        int countI = 1;
 
         ArrayList<Character> twiceChars = new ArrayList<Character>();
         twiceChars.add('M');
@@ -161,20 +155,49 @@ public class ElbonianArabicConverter {
         twiceChars.add('X');
         twiceChars.add('I');
         for(char ruleOne: number.toCharArray()){
-            if(ruleOne == last) {
-                count += 1;
 
-                if (count > maxStraight) {
+            if(ruleOne == twiceChars.get(0)) {
+                countM++;
+                if (countM > maxStraight) {
                     return false;
                 }
-
             }
+            if(ruleOne == twiceChars.get(1)) {
+                countC += 1;
+                if (countC > maxStraight) {
+                    return false;
+                }
+            }
+            if(ruleOne == twiceChars.get(2)) {
+                countX += 1;
+                if (countX > maxStraight) {
+                    return false;
+                }
+            }
+            if(ruleOne == twiceChars.get(3)) {
+                countI += 1;
+                if (countI > maxStraight) {
+                    return false;
+                }
+            }
+
+
+
+
+
             else
             {
                 last = ruleOne;
-                count = 1;
+                countM = 1;
+                countC = 1;
+                countX = 1;
+                countI = 1;
             }
 
+        }
+
+
+        {
         }
         return true;
 
@@ -185,7 +208,13 @@ public class ElbonianArabicConverter {
 
         int maxStraight = 3;
         char last = ' ';
-        int count = 1;
+
+
+        int countN = 1;
+        int countD = 1;
+        int countL = 1;
+        int countV = 1;
+
 
         ArrayList<Character> tripleChars = new ArrayList<Character>();
         tripleChars.add('N');
@@ -193,22 +222,52 @@ public class ElbonianArabicConverter {
         tripleChars.add('L');
         tripleChars.add('V');
         for(char ruleTwo: num.toCharArray()){
-            if(ruleTwo == last) {
-                count += 1;
 
-                if (count > maxStraight) {
-                    return false;
+                if(ruleTwo == tripleChars.get(0)) {
+                    countN++;
+                    if (countN > maxStraight) {
+                        return false;
+                    }
+                }
+                if(ruleTwo == tripleChars.get(1)) {
+                    countD += 1;
+                    if (countD > maxStraight) {
+                        return false;
+                    }
+                }
+                if(ruleTwo == tripleChars.get(2)) {
+                    countL += 1;
+                    if (countL > maxStraight) {
+                        return false;
+                    }
+                }
+                if(ruleTwo == tripleChars.get(3)) {
+                    countV += 1;
+                    if (countV > maxStraight) {
+                        return false;
+                    }
+                }
+
+
+
+
+
+                else
+                {
+                    last = ruleTwo;
+                    countN = 1;
+                    countD = 1;
+                    countL = 1;
+                    countV = 1;
                 }
 
             }
-            else
-            {
-                last = ruleTwo;
-                count = 1;
-            }
 
+
+        {
         }
         return true;
+
     }
     //STEP 3: helper function for rule 3
     private boolean ruleThreeTest(String num) {
@@ -360,7 +419,7 @@ public class ElbonianArabicConverter {
 
             if (stack.isEmpty())
             {
-               stack.push(c);
+                stack.push(c);
             }
             else {
                 String last = stack.peek();
@@ -431,18 +490,14 @@ public class ElbonianArabicConverter {
         ArrayList<Integer> arr = new ArrayList<Integer>();
         int arabic = Integer.parseInt(this.number);
         String elbonian = "";
+        int length;
         int remainder;
         if (arabic == 0)
         {
             return "Z";
         }
-        else{
+        else {
             while (arabic != 0) {
-                if (arabic < -1){
-                    elbonian += "-";
-                    arabic = arabic * -1;
-                }
-
                 divide(arabic, "N", arr);
                 // returns array, arr[0] number of times N, and arr[1] returns remainder
                 for (int i = 0; i < arr.get(0); i++) {
@@ -539,7 +594,6 @@ public class ElbonianArabicConverter {
         conversionTable.put("V", 3);
         conversionTable.put("I", 1);
         conversionTable.put("Z", 0);
-        conversionTable.put("-", 4000);
     }
 
 }
