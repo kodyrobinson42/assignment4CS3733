@@ -420,8 +420,101 @@ public class ElbonianArabicConverter {
      * @return An Elbonian value
      */
     public String toElbonian() {
-        // TODO Fill in the method's body
-        return "I";
+        // convert String to Int
+        ArrayList<Integer> arr = new ArrayList<Integer>();
+        int arabic = Integer.parseInt(this.number);
+        String elbonian = "";
+        int length;
+        int remainder;
+        if (arabic == 0)
+        {
+            return "Z";
+        }
+        else {
+            while (arabic != 0) {
+                divide(arabic, "N", arr);
+                // returns array, arr[0] number of times N, and arr[1] returns remainder
+                for (int i = 0; i < arr.get(0); i++) {
+                    elbonian += "N";
+                }
+                remainder = arr.get(1);
+                arabic = remainder;
+
+                if (remainder != 0) {
+                    divide(remainder, "M", arr);
+                    for (int i = 0; i < arr.get(0); i++) {
+                        elbonian += "M";
+                    }
+                    remainder = arr.get(1);
+                    arabic = remainder;
+
+                    if (remainder != 0) {
+                        divide(remainder, "D", arr);
+                        for (int i = 0; i < arr.get(0); i++) {
+                            elbonian += "D";
+                        }
+                        remainder = arr.get(1);
+                        arabic = remainder;
+                        //
+                        if (remainder != 0) {
+                            divide(remainder, "C", arr);
+                            for (int i = 0; i < arr.get(0); i++) {
+                                elbonian += "C";
+                            }
+                            remainder = arr.get(1);
+                            arabic = remainder;
+                            //
+
+                            if (remainder != 0) {
+                                divide(remainder, "L", arr);
+                                for (int i = 0; i < arr.get(0); i++) {
+                                    elbonian += "L";
+                                }
+                                remainder = arr.get(1);
+                                arabic = remainder;
+                                if (remainder != 0) {
+                                    divide(remainder, "X", arr);
+                                    for (int i = 0; i < arr.get(0); i++) {
+                                        elbonian += "X";
+                                    }
+                                    remainder = arr.get(1);
+                                    arabic = remainder;
+                                    if (remainder != 0) {
+                                        //
+                                        divide(remainder, "V", arr);
+                                        for (int i = 0; i < arr.get(0); i++) {
+                                            elbonian += "V";
+                                        }
+                                        remainder = arr.get(1);
+                                        arabic = remainder;
+                                        //
+                                        if (remainder != 0) {
+                                            divide(remainder, "I", arr);
+                                            for (int i = 0; i < arr.get(0); i++) {
+                                                elbonian += "I";
+                                            }
+                                            remainder = arr.get(1);
+                                            arabic = remainder;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return elbonian;
+    }
+
+
+    public ArrayList<Integer> divide(int remainder, String code, ArrayList<Integer> arr)
+    {
+        int num0fDivision = remainder / conversionTable.get(code);
+        int newRemainder = remainder % conversionTable.get(code);
+        arr.add(0,num0fDivision);
+        arr.add(1,newRemainder);
+        return arr;
     }
 
     private void initHash()
