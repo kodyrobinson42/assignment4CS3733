@@ -122,15 +122,15 @@ public class ElbonianArabicConverter {
                 throw new MalformedNumberException("Failed Elbonian Numeral Rule 6!");
             }
 
+            boolean resultofTestSeven1 = ruleSevenTest1(number);
+            if (resultofTestSeven1 == false) {
+                throw new MalformedNumberException("Failed Elbonian Numeral Rule 7: Extra '-'");
+            }
+
             boolean reusltofTest8 = ruleEightTest(number);
             if (reusltofTest8 == false)
             {
                 throw new MalformedNumberException("Failed Elbonian Numeral Rule 8");
-            }
-
-            boolean resultofTestSeven1 = ruleSevenTest1(number);
-            if (resultofTestSeven1 == false) {
-                throw new MalformedNumberException("Failed Elbonian Numeral Rule 7: Extra '-'");
             }
 
             boolean resultofTest9 = ruleNineTest(number);
@@ -333,7 +333,7 @@ public class ElbonianArabicConverter {
         int countL = 0;
         int maxCountL = 3;
         char L = 'L';
-        char X = 'C';
+        char X = 'X';
         for(char ruleFive: num.toCharArray()){
             if(ruleFive == L){
                 countL += 1;
@@ -397,33 +397,36 @@ public class ElbonianArabicConverter {
 
 
     // STEP 8:
-    private boolean ruleEightTest(String number)
+    private boolean checkForZ(String number)
     {
-        Stack<String> stack = new Stack<String>();
-        int n = number.length();
+        int n = number.toCharArray().length;
         int zCount = 0;
-        for (int i = 0; i < n; i++) {
+        for (int i = 0; i < n; i++)
+        {
             String c = Character.toString(number.charAt(i));
-            if (c == "Z")
+            if (c.equals("Z"))
             {
                 zCount++;
-            }
-            if (stack.isEmpty())
-            {
-                stack.push(c);
-            }
-            else {
-                String last = stack.peek();
-                if (last == "-" && c == "Z")
-                {
-                    return false;
-                }
             }
         }
         if (zCount >= 2)
         {
             return false;
         }
+        return true;
+    }
+
+
+    private boolean ruleEightTest(String number)
+    {
+        boolean condition1 = checkForZ(number);
+        //boolean condition2 = checkForZ(number);
+        if (condition1 != true){
+            return false;
+        }
+//        if (condition2 != true){
+//            return false;
+//        }
         return true;
     }
 

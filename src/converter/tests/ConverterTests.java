@@ -221,18 +221,15 @@ public class ConverterTests {
     @Test
     public void rule5Test1() throws MalformedNumberException, ValueOutOfBoundsException {
         exception.expect(MalformedNumberException.class);
-        ElbonianArabicConverter converter = new ElbonianArabicConverter("LLLL");
+        ElbonianArabicConverter converter = new ElbonianArabicConverter("LLLX");
     }
 
     @Test
     public void rule6Test1() throws MalformedNumberException, ValueOutOfBoundsException {
         exception.expect(MalformedNumberException.class);
-        ElbonianArabicConverter converter = new ElbonianArabicConverter("VVVV");
+        ElbonianArabicConverter converter = new ElbonianArabicConverter("VVVI");
 
     }
-
-
-
 
 
     // TEST 7:
@@ -292,13 +289,13 @@ public class ConverterTests {
     @Test
     public void rule8Test2() throws MalformedNumberException, ValueOutOfBoundsException {
         exception.expect(MalformedNumberException.class);
-        ElbonianArabicConverter converter = new ElbonianArabicConverter("-0");
+        ElbonianArabicConverter converter = new ElbonianArabicConverter("-Z");
     }
 
     @Test
     public void rule8Test3() throws MalformedNumberException, ValueOutOfBoundsException {
         exception.expect(MalformedNumberException.class);
-        ElbonianArabicConverter converter = new ElbonianArabicConverter("LZ");
+        ElbonianArabicConverter converter = new ElbonianArabicConverter("ZZ");
     }
 
     @Test
