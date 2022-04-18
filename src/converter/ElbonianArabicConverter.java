@@ -114,6 +114,18 @@ public class ElbonianArabicConverter {
             System.out.println("number is postive");
         }
 
+        boolean resultofTestNine = ruleNineTest(number);
+        if (resultofTestNine == false)
+        {
+            throw new MalformedNumberException("Failed Elbonian Numeral Rule 9: Not in Greatest to Smallest Order");
+        }
+
+         boolean resultofTestTen = ruleNineTest(number);
+        if (resultofTestTen == false)
+        {
+            throw new ValueOutOfBoundsException("Value Out of Bounds");
+        }
+
 
 
         this.number = number;
@@ -164,8 +176,6 @@ public class ElbonianArabicConverter {
             }
 
         }
-        {
-        }
         return true;
 
     }
@@ -198,10 +208,7 @@ public class ElbonianArabicConverter {
             }
 
         }
-        {
-        }
         return true;
-
     }
     //STEP 3: helper function for rule 3
     private boolean ruleThreeTest(String num) {
@@ -353,7 +360,7 @@ public class ElbonianArabicConverter {
 
             if (stack.isEmpty())
             {
-                stack.push(c);
+               stack.push(c);
             }
             else {
                 String last = stack.peek();
@@ -424,14 +431,18 @@ public class ElbonianArabicConverter {
         ArrayList<Integer> arr = new ArrayList<Integer>();
         int arabic = Integer.parseInt(this.number);
         String elbonian = "";
-        int length;
         int remainder;
         if (arabic == 0)
         {
             return "Z";
         }
-        else {
+        else{
             while (arabic != 0) {
+                if (arabic < -1){
+                    elbonian += "-";
+                    arabic = arabic * -1;
+                }
+
                 divide(arabic, "N", arr);
                 // returns array, arr[0] number of times N, and arr[1] returns remainder
                 for (int i = 0; i < arr.get(0); i++) {
@@ -528,6 +539,7 @@ public class ElbonianArabicConverter {
         conversionTable.put("V", 3);
         conversionTable.put("I", 1);
         conversionTable.put("Z", 0);
+        conversionTable.put("-", 4000);
     }
 
 }

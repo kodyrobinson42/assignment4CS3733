@@ -237,12 +237,46 @@ public class ConverterTests {
     }
 
     @Test
-    public void RuletoElbonian3()  throws MalformedNumberException, ValueOutOfBoundsException {
+    public void RuletoElbonian3() throws MalformedNumberException, ValueOutOfBoundsException {
         ElbonianArabicConverter convert = new ElbonianArabicConverter("0");
         assertEquals(convert.toElbonian(), "Z");
     }
 
+    @Test
+    public void MiscRule1() throws MalformedNumberException, ValueOutOfBoundsException {
+        ElbonianArabicConverter convert = new ElbonianArabicConverter("NNNDDDLLLVVV");
+        assertEquals(convert.toArabic(), 9999);
+    }
 
+    @Test
+    public void MiscRule2() throws MalformedNumberException, ValueOutOfBoundsException {
+        ElbonianArabicConverter convert = new ElbonianArabicConverter("-NNNDDDLLLVVV");
+        assertEquals(convert.toArabic(), -9999);
+    }
+
+    @Test
+    public void MiscRule3() throws MalformedNumberException, ValueOutOfBoundsException {
+        ElbonianArabicConverter convert = new ElbonianArabicConverter("9999");
+        assertEquals(convert.toElbonian(), "NNNDDDLLLVVV");
+    }
+
+    @Test
+    public void MiscRule4() throws MalformedNumberException, ValueOutOfBoundsException {
+        ElbonianArabicConverter convert = new ElbonianArabicConverter("-9999");
+        assertEquals(convert.toElbonian(), "-NNNDDDLLLVVV");
+    }
+
+    @Test
+    public void CompositeTest2() throws MalformedNumberException, ValueOutOfBoundsException {
+        ElbonianArabicConverter convert = new ElbonianArabicConverter("9290");
+        assertEquals(convert.toElbonian(), "NNNCCLLL");
+    }
+
+    @Test
+    public void CompositeTest3() throws MalformedNumberException, ValueOutOfBoundsException {
+        ElbonianArabicConverter convert = new ElbonianArabicConverter("-MMLII");
+        assertEquals(convert.toArabic(), -2032);
+    }
 
 //    @Test
 //    public void rule9Test1() throws MalformedNumberException, ValueOutOfBoundsException {
