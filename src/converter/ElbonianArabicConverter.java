@@ -61,6 +61,8 @@ public class ElbonianArabicConverter {
         ElbonianChar.add('M');
         ElbonianChar.add('N');
         ElbonianChar.add('-');
+        ElbonianChar.add('0');
+
 
         number = removeWhiteSpace(number);
 
@@ -141,7 +143,11 @@ public class ElbonianArabicConverter {
 
         int maxStraight = 2;
         char last = ' ';
-        int count = 1;
+        //int count = 1;
+        int countM = 1;
+        int countC = 1;
+        int countX = 1;
+        int countI = 1;
 
         ArrayList<Character> twiceChars = new ArrayList<Character>();
         twiceChars.add('M');
@@ -149,21 +155,48 @@ public class ElbonianArabicConverter {
         twiceChars.add('X');
         twiceChars.add('I');
         for(char ruleOne: number.toCharArray()){
-            if(ruleOne == last) {
-                count += 1;
 
-                if (count > maxStraight) {
+            if(ruleOne == twiceChars.get(0)) {
+                countM++;
+                if (countM > maxStraight) {
                     return false;
                 }
-
             }
+            if(ruleOne == twiceChars.get(1)) {
+                countC += 1;
+                if (countC > maxStraight) {
+                    return false;
+                }
+            }
+            if(ruleOne == twiceChars.get(2)) {
+                countX += 1;
+                if (countX > maxStraight) {
+                    return false;
+                }
+            }
+            if(ruleOne == twiceChars.get(3)) {
+                countI += 1;
+                if (countI > maxStraight) {
+                    return false;
+                }
+            }
+
+
+
+
+
             else
             {
                 last = ruleOne;
-                count = 1;
+                countM = 1;
+                countC = 1;
+                countX = 1;
+                countI = 1;
             }
 
         }
+
+
         {
         }
         return true;
@@ -175,7 +208,13 @@ public class ElbonianArabicConverter {
 
         int maxStraight = 3;
         char last = ' ';
-        int count = 1;
+
+
+        int countN = 1;
+        int countD = 1;
+        int countL = 1;
+        int countV = 1;
+
 
         ArrayList<Character> tripleChars = new ArrayList<Character>();
         tripleChars.add('N');
@@ -183,21 +222,48 @@ public class ElbonianArabicConverter {
         tripleChars.add('L');
         tripleChars.add('V');
         for(char ruleTwo: num.toCharArray()){
-            if(ruleTwo == last) {
-                count += 1;
 
-                if (count > maxStraight) {
-                    return false;
+                if(ruleTwo == tripleChars.get(0)) {
+                    countN++;
+                    if (countN > maxStraight) {
+                        return false;
+                    }
+                }
+                if(ruleTwo == tripleChars.get(1)) {
+                    countD += 1;
+                    if (countD > maxStraight) {
+                        return false;
+                    }
+                }
+                if(ruleTwo == tripleChars.get(2)) {
+                    countL += 1;
+                    if (countL > maxStraight) {
+                        return false;
+                    }
+                }
+                if(ruleTwo == tripleChars.get(3)) {
+                    countV += 1;
+                    if (countV > maxStraight) {
+                        return false;
+                    }
+                }
+
+
+
+
+
+                else
+                {
+                    last = ruleTwo;
+                    countN = 1;
+                    countD = 1;
+                    countL = 1;
+                    countV = 1;
                 }
 
             }
-            else
-            {
-                last = ruleTwo;
-                count = 1;
-            }
 
-        }
+
         {
         }
         return true;

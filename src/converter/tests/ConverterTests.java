@@ -169,7 +169,7 @@ public class ConverterTests {
         ElbonianArabicConverter converter = new ElbonianArabicConverter("VV");
         assertEquals(converter.toArabic(), 6);
     }
-
+    @Rule
     public ExpectedException exception2 = ExpectedException.none();
     @Test
     public void rule2Test3() throws MalformedNumberException, ValueOutOfBoundsException {
