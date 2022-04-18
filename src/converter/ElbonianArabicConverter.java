@@ -35,11 +35,11 @@ public class ElbonianArabicConverter {
      * in the Elbonian number system.
      * @throws MalformedNumberException Thrown if the value is an Elbonian number that does not conform
      * to the rules of the Elbonian number system or any other error in Arabic number input.
-	 * Leading and trailing spaces should not throw an error.
+     * Leading and trailing spaces should not throw an error.
      */
     public ElbonianArabicConverter(String number) throws MalformedNumberException, ValueOutOfBoundsException {
         // TODO check to see if the number is valid, then set it equal to the string
-          initHash();
+        initHash();
         ArrayList<Integer> ArabicInts = new ArrayList<Integer>();
         ArabicInts.add(0);
         ArabicInts.add(1);
@@ -232,42 +232,42 @@ public class ElbonianArabicConverter {
         tripleChars.add('V');
         for(char ruleTwo: num.toCharArray()){
 
-                if(ruleTwo == tripleChars.get(0)) {
-                    countN++;
-                    if (countN > maxStraight) {
-                        return false;
-                    }
-                } else if(ruleTwo == tripleChars.get(1)) {
-                    countD += 1;
-                    if (countD > maxStraight) {
-                        return false;
-                    }
-                } else if(ruleTwo == tripleChars.get(2)) {
-                    countL += 1;
-                    if (countL > maxStraight) {
-                        return false;
-                    }
-                } else if(ruleTwo == tripleChars.get(3)) {
-                    countV += 1;
-                    if (countV > maxStraight) {
-                        return false;
-                    }
+            if(ruleTwo == tripleChars.get(0)) {
+                countN++;
+                if (countN > maxStraight) {
+                    return false;
                 }
-
-
-
-
-
-                else
-                {
-                    last = ruleTwo;
-                    countN = 0;
-                    countD = 0;
-                    countL = 0;
-                    countV = 0;
+            } else if(ruleTwo == tripleChars.get(1)) {
+                countD += 1;
+                if (countD > maxStraight) {
+                    return false;
                 }
-
+            } else if(ruleTwo == tripleChars.get(2)) {
+                countL += 1;
+                if (countL > maxStraight) {
+                    return false;
+                }
+            } else if(ruleTwo == tripleChars.get(3)) {
+                countV += 1;
+                if (countV > maxStraight) {
+                    return false;
+                }
             }
+
+
+
+
+
+            else
+            {
+                last = ruleTwo;
+                countN = 0;
+                countD = 0;
+                countL = 0;
+                countV = 0;
+            }
+
+        }
 
 
         {
@@ -369,11 +369,11 @@ public class ElbonianArabicConverter {
     // checks for negative sign at beginning, returns true if neg. false if not
     public boolean ruleSevenTest2(String number)
     {
-            String c = Character.toString(number.charAt(0));
-            if (Character.toString(number.charAt(0)) == "-")
-            {
-                return true;
-            }
+        String c = Character.toString(number.charAt(0));
+        if (Character.toString(number.charAt(0)) == "-")
+        {
+            return true;
+        }
         return false;
     }
 
@@ -394,9 +394,9 @@ public class ElbonianArabicConverter {
                 zCount++;
             }
             if (stack.isEmpty())
-                {
-                    stack.push(c);
-                }
+            {
+                stack.push(c);
+            }
             else {
                 String last = stack.peek();
                 if (last == "-" && c == "Z")
@@ -443,7 +443,7 @@ public class ElbonianArabicConverter {
 
 
 
-        // takes in an integer and decides if it's out of bounds
+    // takes in an integer and decides if it's out of bounds
     private boolean ruleTenTest(String number)
     {
         int Number = Integer.parseInt(number);
@@ -506,10 +506,9 @@ public class ElbonianArabicConverter {
             while (arabic != 0) {
                 if (arabic <= -1)
                 {
-                    elbonian += "-";
+                    elbonian = "-";
                 }
                 arabic = (arabic * -1);
-
                 divide(arabic, "N", arr);
                 // returns array, arr[0] number of times N, and arr[1] returns remainder
                 for (int i = 0; i < arr.get(0); i++) {
@@ -606,6 +605,7 @@ public class ElbonianArabicConverter {
         conversionTable.put("V", 3);
         conversionTable.put("I", 1);
         conversionTable.put("Z", 0);
+        conversionTable.put("-", 4000);
     }
 
 }
