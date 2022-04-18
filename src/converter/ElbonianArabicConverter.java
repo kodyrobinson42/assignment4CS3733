@@ -173,20 +173,17 @@ public class ElbonianArabicConverter {
                 if (countM > maxStraight) {
                     return false;
                 }
-            }
-            if(ruleOne == 'C') {
+            } else if(ruleOne == 'C') {
                 countC += 1;
                 if (countC > maxStraight) {
                     return false;
                 }
-            }
-            if(ruleOne == 'X') {
+            } else if(ruleOne == 'X') {
                 countX ++;
                 if (countX > maxStraight) {
                     return false;
                 }
-            }
-            if(ruleOne == 'I') {
+            } else if(ruleOne == 'I') {
                 countI++;
                 if (countI > maxStraight) {
                     return false;
@@ -240,20 +237,17 @@ public class ElbonianArabicConverter {
                     if (countN > maxStraight) {
                         return false;
                     }
-                }
-                if(ruleTwo == tripleChars.get(1)) {
+                } else if(ruleTwo == tripleChars.get(1)) {
                     countD += 1;
                     if (countD > maxStraight) {
                         return false;
                     }
-                }
-                if(ruleTwo == tripleChars.get(2)) {
+                } else if(ruleTwo == tripleChars.get(2)) {
                     countL += 1;
                     if (countL > maxStraight) {
                         return false;
                     }
-                }
-                if(ruleTwo == tripleChars.get(3)) {
+                } else if(ruleTwo == tripleChars.get(3)) {
                     countV += 1;
                     if (countV > maxStraight) {
                         return false;
