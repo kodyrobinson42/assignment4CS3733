@@ -185,6 +185,45 @@ public class ConverterTests {
         converter.toArabic();
     }
 
+
+    @Test
+    public void rule3Test1() throws MalformedNumberException, ValueOutOfBoundsException{
+        exception.expect(MalformedNumberException.class);
+        exception.expectMessage("Failed Elbonian Numeral Rule 3!");
+        ElbonianArabicConverter converter = new ElbonianArabicConverter("NNNM");
+
+    }
+
+    @Test
+    public void rule3Test2() throws MalformedNumberException, ValueOutOfBoundsException{
+        exception.expect(MalformedNumberException.class);
+        exception.expectMessage("Failed Elbonian Numeral Rule 3!");
+        ElbonianArabicConverter converter = new ElbonianArabicConverter("NNNMDDCLM");
+
+    }
+
+    @Test
+    public void rule4Test1() throws MalformedNumberException, ValueOutOfBoundsException{
+        exception.expect(MalformedNumberException.class);
+        exception.expectMessage("Failed Elbonian Numeral Rule 4!");
+        ElbonianArabicConverter converter = new ElbonianArabicConverter("DDDC");
+
+    }
+
+    @Test
+    public void rule4Test2() throws MalformedNumberException, ValueOutOfBoundsException{
+        exception.expect(MalformedNumberException.class);
+        exception.expectMessage("Failed Elbonian Numeral Rule 4!");
+        ElbonianArabicConverter converter = new ElbonianArabicConverter("DDDCLLVI");
+
+    }
+
+
+
+
+
+
+
     // TEST 7:
     // change after making tests private
     @Test

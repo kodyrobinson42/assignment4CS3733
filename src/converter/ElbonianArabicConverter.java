@@ -419,33 +419,48 @@ public class ElbonianArabicConverter {
         return true;
     }
 
+
+    public boolean checkInputInt(String number){
+        if(number == null){
+            return false;
+        }
+        try{
+            double d = Double.parseDouble(number);
+        } catch(NumberFormatException nfe){
+            return false;
+        }
+        return true;
+    }
+
     // STEP 9:
     // ** Tests if it's in correct order
     // returns true if passes test
     // false if breaks test
     private boolean ruleNineTest(String number) {
-        Stack<String> stack = new Stack<String>();
-        int n = number.length();
+        if (checkInputInt(number)) {
+            return true;
+        } else {
+            Stack<String> stack = new Stack<String>();
+            int n = number.length();
 
-        for (int i = 0; i < n; i++) {
-            String c = Character.toString(number.charAt(i));
+            for (int i = 0; i < n; i++) {
+                String c = Character.toString(number.charAt(i));
 
-            if (stack.isEmpty())
-            {
-                stack.push(c);
-            }
-            else {
-                String last = stack.peek();
-                int compare = conversionTable.get(last);
-                int current = conversionTable.get(c);
-                if (current > compare) { // if current value is greater than last added value
-                    return false;
-                } else {
+                if (stack.isEmpty()) {
                     stack.push(c);
+                } else {
+                    String last = stack.peek();
+                    int compare = conversionTable.get(last);
+                    int current = conversionTable.get(c);
+                    if (current > compare) { // if current value is greater than last added value
+                        return false;
+                    } else {
+                        stack.push(c);
+                    }
                 }
             }
+            return true;
         }
-        return true;
     }
 
 
