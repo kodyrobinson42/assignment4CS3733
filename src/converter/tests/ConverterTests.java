@@ -257,6 +257,13 @@ public class ConverterTests {
     }
 
     @Test
+    public void Rule11Test2() throws MalformedNumberException, ValueOutOfBoundsException {
+        //exception.expect(MalformedNumberException.class);
+        ElbonianArabicConverter convert = new ElbonianArabicConverter(" V");
+        assertEquals(convert.toArabic(), 3);
+    }
+
+    @Test
     public void Rule12Test1() throws MalformedNumberException, ValueOutOfBoundsException{
         exception.expect(MalformedNumberException.class);
         ElbonianArabicConverter converter = new ElbonianArabicConverter("abcdef");
@@ -273,18 +280,13 @@ public class ConverterTests {
         exception.expect(MalformedNumberException.class);
         ElbonianArabicConverter converter = new ElbonianArabicConverter("DMxVI");
     }
-//
-//    @Test
-//    public void Rule11Test2() throws MalformedNumberException, ValueOutOfBoundsException {
-//        exception.expect(MalformedNumberException.class);
-//        ElbonianArabicConverter convert = new ElbonianArabicConverter(" V");
-//    }
-//
-//    @Test
-//    public void MiscRule1() throws MalformedNumberException, ValueOutOfBoundsException {
-//        ElbonianArabicConverter convert = new ElbonianArabicConverter("NNNDDDLLLVVV");
-//        assertEquals(convert.toArabic(), 9999);
-//    }
+
+
+    @Test
+    public void MiscRule1() throws MalformedNumberException, ValueOutOfBoundsException {
+        ElbonianArabicConverter convert = new ElbonianArabicConverter("NNNDDDLLLVVV");
+        assertEquals(convert.toArabic(), 9999);
+    }
 
     @Test
     public void MiscRule2() throws MalformedNumberException, ValueOutOfBoundsException {

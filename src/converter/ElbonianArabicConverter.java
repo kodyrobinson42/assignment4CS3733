@@ -75,8 +75,8 @@ public class ElbonianArabicConverter {
 
 
 
-
-        number = removeWhiteSpace(number);
+        number = number.trim();
+        //number = removeWhiteSpace(number);
 
         boolean isInElbonianAlphabet = checkIfElbonian(number);
         if(!isInElbonianAlphabet){
@@ -128,6 +128,10 @@ public class ElbonianArabicConverter {
             System.out.println("number is postive");
         }
 
+        boolean resultofTest11 = Rule11Test(number);
+        if(resultofTestSeven1 == false){
+            throw new MalformedNumberException("Failed Elbonian Numeral Rule 11: Extra ' '");
+        }
 
 
         this.number = number;
@@ -454,6 +458,17 @@ public class ElbonianArabicConverter {
         else {
             return true; // returns true if not out of bounds
         }
+    }
+
+
+    public boolean Rule11Test(String number)
+    {
+        for (int i = 0; i < number.length() ;i++)
+        {
+            if (Character.toString(number.charAt(i)) == " ");
+            return false;
+        }
+        return true;
     }
 
     /**
